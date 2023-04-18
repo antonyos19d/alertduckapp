@@ -1,5 +1,6 @@
 import 'package:alertduckapp/src/widgets/login_button_widget.dart';
 import 'package:alertduckapp/src/widgets/login_textfield_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -9,6 +10,13 @@ class LoginPage extends StatelessWidget {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  signUserIn() async {
+    print('mandando las credenciales');
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: usernameController.text, password: passwordController.text);
+    print('credenciales enviadas');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +139,4 @@ class LoginPage extends StatelessWidget {
           ),
         ));
   }
-
-  signUserIn() {}
 }

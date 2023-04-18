@@ -1,0 +1,49 @@
+
+
+{
+  "project_info": {
+    "project_number": "130462502963",
+    "firebase_url": "https://iottecsup2021ao-default-rtdb.firebaseio.com",
+    "project_id": "iottecsup2021ao",
+    "storage_bucket": "iottecsup2021ao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130462502963:android:c8fcbac5280099fd679346",
+        "android_client_info": {
+          "package_name": "com.example.alertduckapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130462502963-0nsehp4b90nfb4ui7k7908fbdnj185gt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv42_ADjGfAAKgful0NZDMUgjoeMWI8_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130462502963-0nsehp4b90nfb4ui7k7908fbdnj185gt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "130462502963-79jbs91a3not2om4h130nnte3lpqefha.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.alertduckbeta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
