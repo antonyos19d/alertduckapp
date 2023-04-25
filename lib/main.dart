@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
         initialRoute: 'auth',
         routes: {
           'contenedor': (BuildContext context) => ContenedorPage(),
-          'login': (BuildContext context) => LoginPage(),
           'auth': (BuildContext context) => AuthPage()
         },
       ),

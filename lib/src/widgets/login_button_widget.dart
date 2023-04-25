@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   final Function()? xOnTap;
+  final String xLabelButton;
 
-  const LoginButtonWidget({super.key, required this.xOnTap});
+  const LoginButtonWidget(
+      {super.key, required this.xOnTap, required this.xLabelButton});
 
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -15,7 +17,7 @@ class LoginButtonWidget extends StatelessWidget {
             color: Colors.black, borderRadius: BorderRadius.circular(8)),
         child: Center(
             child: Text(
-          'Sign In',
+          xLabelButton,
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         )),

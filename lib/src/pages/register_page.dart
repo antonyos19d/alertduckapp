@@ -1,5 +1,3 @@
-import 'package:alertduckapp/src/services/google_auth_service.dart';
-import 'package:alertduckapp/src/widgets/login_button_google_widget.dart';
 import 'package:alertduckapp/src/widgets/login_button_widget.dart';
 import 'package:alertduckapp/src/widgets/login_textfield_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,20 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? xOnTap;
-  LoginPage({super.key, required this.xOnTap});
+  RegisterPage({super.key, required this.xOnTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final usernameController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final passwordConfirmController = TextEditingController();
 
-  signUserIn() async {
+  signUserUp() async {
     showDialog(
         context: context,
         builder: (context) {
@@ -30,9 +28,15 @@ class _LoginPageState extends State<LoginPage> {
         });
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: usernameController.text, password: passwordController.text);
-      Navigator.pop(context);
+      if (passwordController.text == passwordConfirmController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: usernameController.text, password: passwordController.text);
+        Navigator.pop(context);
+      } else {
+        //show error message, password don't match
+        Navigator.pop(context);
+        wrongErrorMessage('No coinciden los passwords!!');
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       //mensaje de error
@@ -64,13 +68,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Icon(
                     Icons.lock,
-                    size: 100,
+                    size: 70,
                   ),
                   const SizedBox(
                     height: 50,
                   ),
                   Text(
-                    'Bienvenido',
+                    'Crear una cuenta',
                     style: TextStyle(color: Colors.grey[700], fontSize: 18),
                   ),
                   SizedBox(
@@ -90,24 +94,19 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Olvidé mi contraseña?',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                      ],
-                    ),
+                  LoginTextfieldWidget(
+                      xController: passwordConfirmController,
+                      xHintText: 'Confirm Password',
+                      xObscureText: true),
+                  SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   LoginButtonWidget(
-                    xLabelButton: 'Sign In',
-                    xOnTap: signUserIn,
+                    xLabelButton: 'Sign Up',
+                    xOnTap: signUserUp,
                   ),
                   SizedBox(
                     height: 50,
@@ -136,9 +135,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  LoginButtonGoogleWidget(
-                      xRuta: 'lib/images/gogle_img.png',
-                      xOnTap: (() => GoogleAuthService().signInWithGoogle())),
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.grey[200]),
+                    child: Image.asset('lib/images/gogle_img.png', height: 80),
+                  ),
                   SizedBox(
                     height: 25,
                   ),
@@ -146,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'No tienes cuenta?',
+                        'Ya tengo una cuenta?',
                         style: TextStyle(color: Colors.grey[700], fontSize: 16),
                       ),
                       const SizedBox(
@@ -155,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                       GestureDetector(
                         onTap: widget.xOnTap,
                         child: Text(
-                          'Registrate Ahora',
+                          'Iniciar Sesión',
                           style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
