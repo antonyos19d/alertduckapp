@@ -1,9 +1,8 @@
 import 'package:alertduckapp/src/widgets/login_button_widget.dart';
 import 'package:alertduckapp/src/widgets/login_textfield_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? xOnTap;
@@ -14,7 +13,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final usernameController = TextEditingController();
+  final userNameController = TextEditingController();
+  final userEmailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
 
@@ -29,8 +29,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       if (passwordController.text == passwordConfirmController.text) {
+        //crea cuenta
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: usernameController.text, password: passwordController.text);
+            email: userEmailController.text, password: passwordController.text);
+
+        final String xUid = FirebaseAuth.instance.currentUser!.uid;
+
+        //guardar informacion en firestore
+        AgregarDetalleUsuario(
+            xUid, userNameController.text, userEmailController.text);
         Navigator.pop(context);
       } else {
         //show error message, password don't match
@@ -42,6 +49,14 @@ class _RegisterPageState extends State<RegisterPage> {
       //mensaje de error
       wrongErrorMessage(e.code);
     }
+  }
+
+  Future AgregarDetalleUsuario(
+      String xUid, String xNombre, String xEmail) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(xUid)
+        .set({'nombre': xNombre, 'email': xEmail});
   }
 
   void wrongErrorMessage(String xMensaje) {
@@ -64,25 +79,32 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Icon(
                     Icons.lock,
                     size: 70,
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Text(
                     'Crear una cuenta',
                     style: TextStyle(color: Colors.grey[700], fontSize: 18),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   LoginTextfieldWidget(
-                      xController: usernameController,
-                      xHintText: 'username',
+                      xController: userNameController,
+                      xHintText: 'Nombre de Usuario',
+                      xObscureText: false),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  LoginTextfieldWidget(
+                      xController: userEmailController,
+                      xHintText: 'Email',
                       xObscureText: false),
                   SizedBox(
                     height: 10,

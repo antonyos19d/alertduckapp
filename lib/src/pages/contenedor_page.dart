@@ -1,4 +1,3 @@
-
 import 'package:alertduckapp/src/pages/subpages/micuenta_page.dart';
 import 'package:alertduckapp/src/pages/subpages/dispositivos_page.dart';
 import 'package:alertduckapp/src/providers/navigationbar_provider.dart';
@@ -11,7 +10,7 @@ class ContenedorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _HomePageBody()),
-      bottomNavigationBar: CustomNavigationBarWidget(),
+      bottomNavigationBar: NavigationBarWidget(),
     );
   }
 }
@@ -25,10 +24,8 @@ class _HomePageBody extends StatelessWidget {
     switch (i) {
       case 0:
         return DispositivosPage();
-        break;
       case 1:
         return MicuentaPage();
-        break;
       default:
         return DispositivosPage();
     }

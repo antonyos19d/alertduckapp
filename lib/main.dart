@@ -1,8 +1,9 @@
 import 'package:alertduckapp/src/pages/auth_page.dart';
 import 'package:alertduckapp/src/pages/contenedor_page.dart';
-import 'package:alertduckapp/src/pages/login_page.dart';
+import 'package:alertduckapp/src/pages/register_sensor_page.dart';
 import 'package:alertduckapp/src/providers/navigationbar_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +15,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light));
   runApp(MyApp());
 }
 
@@ -31,7 +36,8 @@ class MyApp extends StatelessWidget {
         initialRoute: 'auth',
         routes: {
           'contenedor': (BuildContext context) => ContenedorPage(),
-          'auth': (BuildContext context) => AuthPage()
+          'auth': (BuildContext context) => AuthPage(),
+          'registerSensor': (BuildContext context) => RegisterSensorPage()
         },
       ),
     );

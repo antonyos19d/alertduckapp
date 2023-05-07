@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final usernameController = TextEditingController();
+  final userEmailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: usernameController.text, password: passwordController.text);
+          email: userEmailController.text, password: passwordController.text);
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -77,8 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                     height: 25,
                   ),
                   LoginTextfieldWidget(
-                      xController: usernameController,
-                      xHintText: 'username',
+                      xController: userEmailController,
+                      xHintText: 'Email',
                       xObscureText: false),
                   SizedBox(
                     height: 10,
