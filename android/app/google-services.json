@@ -1,5 +1,3 @@
-
-
 {
   "project_info": {
     "project_number": "130462502963",
@@ -16,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "130462502963-3ihiqlud7fvqgnnpgal96fbbqfgnv4hk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alertduckapp",
+            "certificate_hash": "7dcb3fc9224b7b0515ff62a21e2ee8289ad670b8"
+          }
+        },
         {
           "client_id": "130462502963-0nsehp4b90nfb4ui7k7908fbdnj185gt.apps.googleusercontent.com",
           "client_type": 3
@@ -34,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "130462502963-79jbs91a3not2om4h130nnte3lpqefha.apps.googleusercontent.com",
+              "client_id": "130462502963-o1mgnqu4uraergpos3hlesa7eprn77oa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.alertduckbeta"
+                "bundle_id": "com.example.alertduckapp"
               }
             }
           ]

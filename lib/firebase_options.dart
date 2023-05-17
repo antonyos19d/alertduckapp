@@ -70,7 +70,7 @@ class DefaultFirebaseOptions {
     projectId: 'iottecsup2021ao',
     databaseURL: 'https://iottecsup2021ao-default-rtdb.firebaseio.com',
     storageBucket: 'iottecsup2021ao.appspot.com',
-    androidClientId: '130462502963-nqf30igsjpcln60c79ssrkprpmlqthuh.apps.googleusercontent.com',
+    androidClientId: '130462502963-3ihiqlud7fvqgnnpgal96fbbqfgnv4hk.apps.googleusercontent.com',
     iosClientId: '130462502963-o1mgnqu4uraergpos3hlesa7eprn77oa.apps.googleusercontent.com',
     iosBundleId: 'com.example.alertduckapp',
   );
@@ -82,7 +82,7 @@ class DefaultFirebaseOptions {
     projectId: 'iottecsup2021ao',
     databaseURL: 'https://iottecsup2021ao-default-rtdb.firebaseio.com',
     storageBucket: 'iottecsup2021ao.appspot.com',
-    androidClientId: '130462502963-nqf30igsjpcln60c79ssrkprpmlqthuh.apps.googleusercontent.com',
+    androidClientId: '130462502963-3ihiqlud7fvqgnnpgal96fbbqfgnv4hk.apps.googleusercontent.com',
     iosClientId: '130462502963-o1mgnqu4uraergpos3hlesa7eprn77oa.apps.googleusercontent.com',
     iosBundleId: 'com.example.alertduckapp',
   );
